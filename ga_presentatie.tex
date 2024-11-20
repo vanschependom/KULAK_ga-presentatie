@@ -1,5 +1,5 @@
 \documentclass[11pt,t]{beamer}
-\usetheme[kulak]{kuleuventheme2}	%THEME OPTIONS for LOGO: kul (default), kulak, lrd,    ; OPTIONS for TITLE PAGE: normal (default), sedes
+\usetheme[kulak]{kuleuven2}	%THEME OPTIONS for LOGO: kul (default), kulak, lrd,    ; OPTIONS for TITLE PAGE: normal (default), sedes
 
 
 %%% OTHER SETTINGS
@@ -45,14 +45,38 @@
 
 
 
+	\section{Introduction}
 
-
+	\begin{frame}{Double--column frame}
+		\begin{columns}
+			\begin{column}{.5\textwidth}
+				\centering
+				\begin{figure}
+					\includegraphics[width=\columnwidth]{images/disk}
+				\end{figure}
+			\end{column}
+			\begin{column}{.5\textwidth}
+				This is the top of the second column.
+			\end{column}
+		\end{columns}
+	\end{frame}
 
 
 	%%
 	%%  SECTION 1 - INFO
 	%%
-	\section{Theme options}
+	\section{Definition of a B-Tree}
+
+	\begin{frame}[noframenumbering]{Definition of a B-Tree}
+		\begin{itemize}[<+->]
+			\item Rooted tree with root \(T.root\)
+			\item All leaves have the same depth.
+		\end{itemize}
+	\end{frame}
+
+
+
+
 	\begin{frame}[fragile]{Theme options}  %option fragile needed for verbatim environment
 		To change \emph{logo}, options are:
 		\begin{itemize}
@@ -160,6 +184,7 @@
 			\end{column}
 		\end{columns}
 	\end{frame}
+
 
 
 
