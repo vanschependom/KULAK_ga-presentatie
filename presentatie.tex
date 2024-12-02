@@ -92,18 +92,19 @@
 		\begin{itemize}[<+->]
 			\item The keys \(x.key_i\) separate the ranges of keys stored in each subtree. \begin{itemize}[<+->]
 				\item Let \(k_i\) be any key stored in the subtree with root \(x.c_i\)
-				\begin{itemize}
-					\item \(k_i\) is one of the keys of child \(x.c_i\) of node \(x\)
-					\item \(k_i\) is one of the keys of a descendant of child \(x.c_i\) of node \(x\)
-				\end{itemize}
+%				\begin{itemize}
+%					\item \(k_i\) is one of the keys of child \(x.c_i\) of node \(x\)
+%					\item \(k_i\) is one of the keys of a descendant of child \(x.c_i\) of node \(x\)
+%				\end{itemize}
 			\end{itemize}
-			\vspace{-0.3cm}
 			\onslide<+-> \begin{align*}
 				k_1 \leq x.key_1 \leq k_2 \leq x.key_2 \leq \ldots \leq x.key_{x.n} \leq k_{x.n+1}
 			\end{align*} \vspace{-0.8cm}
 			\item Example:
 		\end{itemize}
-		\onslide<6> \vspace{-0.3cm} \centering \includegraphics[width=.7\textwidth]{images/letters}
+		\centering
+		\onslide<4>{ \includegraphics[width=.7\textwidth]{images/letters}}
+		\vspace{0.5cm}
 	\end{frame}
 
 	\begin{frame}{Minimum degree}
@@ -128,7 +129,7 @@
 
 	\begin{frame}{Quick SOCS recap}
 		\begin{itemize}[<+->]
-			\item Computer systems use a hierarchy of memory technologies. \onslide<+-> \begin{align*}
+			\item Computer systems use a hierarchy of memory technologies.  \begin{align*}
 				\text{Registers} < \text{Caches} < \text{Main Memory} < \text{Secondary Memory}
 			\end{align*}
 			\item Primary memory: \begin{itemize}[<+->]
@@ -171,7 +172,7 @@
 				\item B-trees are a very common datastructure for handling this.
 			\end{itemize}
 			\item Each node is usually as large as a whole disk block.
-			\item Reading/writing in secondary memory \(\leftrightarrow\) reading/writing in a B-tree
+			\item Reading/writing in secondary memory \(\leftrightarrow\) operations on a B-tree
 			\begin{itemize}[<+->]
 				\item The number of blocks read or written provides a good approximation of the total time spent accessing the disk drive.
 				\item Only downward paths.
@@ -198,7 +199,7 @@
 		\renewcommand*{\arraystretch}{1.4}
 		\onslide<+->\begin{tabular}{r | *{6}{|c}}
 			depth & \(0\) & \(1\) & \(2\) & \(3\) & ... & \(h\)\\ \hline
-			number of nodes & \(1\) & \(2\) & \(2t\) & \(2t^2\) & ... & \(2^{h-1}\)
+			number of nodes & \(1\) & \(2\) & \(2t\) & \(2t^2\) & ... & \(2t^{h-1}\)
 		\end{tabular}
 	\end{frame}
 
@@ -228,7 +229,7 @@
 						\(2\) & \(2t\) \\
 						\(3\) & \(2t^2\) \\
 						\(\vdots\) & \(\vdots\) \\
-						\(h\) & \(2^{h-1}\)
+						\(h\) & \(2t^{h-1}\)
 					\end{tabular}
 				\end{table}
 			\end{column}
@@ -260,18 +261,19 @@
 				\item The amount of \textit{ways} is equal to the number of children.
 				\item At each internal node \(x\), the search makes an \((x.n+1)\)-way branching decision.
 			\end{itemize}
-			\item Example: searching for the letter \(S\). \vspace{0.2cm}\\
+			\item Example: searching for the letter \(S\) using lexicographic order. \vspace{0.2cm}\\
 			\centering
 			\hspace{1cm}\includegraphics{images/letters}
 		\end{itemize}
 	\end{frame}
 
 	\begin{frame}{Searching a B-tree: pseudocode}
+		\vspace{0.5cm}
 		\begin{columns}[c]
-			\begin{column}{.5\textwidth}
+			\begin{column}[c]{.5\textwidth}
 				\includegraphics[width=.9\columnwidth]{images/search}
 			\end{column}
-			\begin{column}{.5\textwidth}
+			\begin{column}[c]{.5\textwidth}
 				\pause\begin{itemize}[<+->]
 					\item \(x\) is a pointer to the root node of a subtree
 					\item \(k\) is the key to be searched
@@ -279,13 +281,9 @@
 				\end{itemize}
 			\end{column}
 		\end{columns}
-		\vspace{0.4cm}
-		\begin{itemize}[<+->]
-			\item Recall that \(k_1 \leq x.key_1 \leq k_2 \leq x.key_2 \leq \ldots \leq x.key_{x.n} \leq k_{x.n+1}\) \\ where \(k_i\) is any key of child \(x.c_i\)
-		\end{itemize}
 	\end{frame}
 
-	\begin{frame}{Searching a B-tree: memory accesses}
+	\begin{frame}{Searching a B-tree: memory access analysis}
 		\begin{itemize}[<+->]
 			\item The nodes encountered during the recursion form a simple path downward from the root to the tree.
 			\item Thus, \textsc{B-Tree-Search} executes \(O(h) = O(\log_t n)\) memory accesses.
@@ -296,7 +294,8 @@
 		\end{itemize}
 	\end{frame}
 
-	\begin{frame}{Searching a B-tree: runtime}
+	\begin{frame}{Searching a B-tree: runtime analysis}
+		\vspace{1cm}
 		\begin{columns}[c]
 			\begin{column}{.5\textwidth}
 				\includegraphics[width=.9\columnwidth]{images/runtime}
